@@ -36,7 +36,7 @@ export default function decorate(block) {
 
       const ctaDiv = row.children[3];
       const ctaParagraph = ctaDiv?.querySelector('p');
-      const ctaStyle = ctaParagraph?.textContent?.trim() || 'default';
+      const ctaStyle = ctaParagraph?.textContent?.trim() || 'link';
 
       moveInstrumentation(row, li);
       while (row.firstElementChild) li.append(row.firstElementChild);
@@ -63,11 +63,14 @@ export default function decorate(block) {
         }
       });
 
-      const buttonContainers = li.querySelectorAll('p.button-container');
-      buttonContainers.forEach((buttonContainer) => {
-        buttonContainer.classList.remove('default', 'cta-button', 'cta-button-secondary', 'cta-button-dark', 'cta-default');
-        buttonContainer.classList.add(ctaStyle);
-      });
+      const ctaLinks = li.querySelectorAll('.cards-card-body a');
+
+ctaLinks.forEach((link) => {
+  const buttonContainer = link.closest('p');
+  if (buttonContainer) {
+    buttonContainer.classList.add('button-container', ctaStyle);
+  }
+});
 
       slider.append(li);
     } else {

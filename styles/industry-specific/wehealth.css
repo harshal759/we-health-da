@@ -1,0 +1,360 @@
+
+:root {
+    --brand-theme-color: #00c4ff;
+    --nav-text-color: #000000;
+    --brand-link-color: #131313;
+    --brand-light-text-color: #ffffff;
+    --brand-link-hover-color:#F97316;
+}
+.wehealth header .nav-wrapper{
+    position:fixed;
+    background-color: #fff;
+}
+
+
+.wehealth header nav .nav-sections ul > li > a:hover ,.wehealth header nav .nav-sections ul > li > a{
+    color: var(--nav-text-color);
+}
+.wehealth header .nav-tools{
+    gap:10px;
+}
+
+.wehealth header .search .icon img {
+    filter: none;
+}
+.wehealth header .lang-switcher .lang-button {
+color: #000;
+    border: 1px solid rgb(0 0 0 / 40%);
+}
+
+
+/* hero */
+.wehealth .hero-container {
+   transform: none !important;
+}
+.wehealth .hero h1::after {
+ display:none;
+}
+.wehealth .hero p a{
+    padding: 12px 24px !important;
+    margin: 10px 5px;
+    background-color: var(--main-accent-color) !important;
+    color: var(--text-light) !important;
+    text-decoration: none;
+    border: 2px solid var(--main-accent-color) !important;
+    border-radius: 4px;
+}
+.wehealth .hero p a:after{
+color: var(--text-light) !important;
+}
+
+.wehealth .hero-container.image-background-text-right .hero{
+    justify-content: flex-end;
+    align-items: center;
+    text-align: left;
+    padding: 60px 40px;
+}  
+.wehealth .hero-container.image-background-text-right .hero h1:after{
+    margin:20px 0;
+    display:block;
+}  
+.wehealth .hero-container.image-background-text-right .hero p{
+    text-align: left;
+}
+
+/* Tablet and below */
+@media (width < 1024px) {
+  .wehealth .hero-container.image-background-text-right .hero {
+    padding: 50px 30px;
+  }
+}
+
+/* Mobile and below */
+@media (width < 768px) {
+  .wehealth .hero-container.image-background-text-right .hero {
+    padding: 40px 16px;
+    text-align: center;
+  }
+  .wehealth .hero-container.image-background-text-right .hero  > div {
+        max-width: 100%;
+  }
+  .wehealth .hero-container.image-background-text-right .hero h1,
+  .wehealth .hero-container.image-background-text-right .hero p{
+    text-align: center;
+  }
+}
+
+/* Small mobile */
+@media (width < 480px) {
+  .wehealth .hero-container.image-background-text-right .hero {
+    padding: 24px 12px;
+  }
+  .wehealth .hero-container.image-background-text-right .hero h1{
+    font-size: 1.6rem;
+  }
+}
+
+
+/* cards */
+
+.wehealth .cards > ul > li{
+    border:none !important;
+}
+
+/* columns */
+
+.wehealth .columns-container .columns-wrapper .columns.block{
+    display:flex;
+flex-direction: row;
+    justify-content: flex-start;
+    gap: 40px;
+    padding: 0;
+    min-height: auto;    
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+.wehealth .columns-container .columns-wrapper .columns > div:first-child{
+flex: 0 0 50%;
+}
+.wehealth .columns-container .columns-wrapper .columns > div:nth-child(2){
+flex: 0 0 50%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+.wehealth .columns-container .columns-wrapper .columns > div:nth-child(2) > div{
+    flex:unset;
+    width:100%;
+}
+.wehealth .columns-container .columns-wrapper .columns > div:nth-child(2) > div h2,
+.wehealth .columns-container .columns-wrapper .columns > div:nth-child(2) > div p{
+    margin:0;
+}
+
+/* mobileview */
+@media (width < 768px) {
+.wehealth .columns-container .columns-wrapper .columns.block{
+    flex-direction: column;
+    gap: 20px;
+}
+.wehealth .columns-container .columns-wrapper .columns.block .columns-row{
+    margin:0;
+}
+.wehealth .columns-container .columns-wrapper .columns > div:nth-child(2) {
+    flex: 1 1 auto;
+        padding: 24px 16px;
+}
+.wehealth .columns-container .columns-wrapper .columns > div:nth-child(2) > div p,
+.wehealth .columns-container .columns-wrapper .columns > div:nth-child(2) > div h2 {
+    margin:0 auto;
+    text-align: center;
+}
+}
+
+.wehealth .columns-container.column-flex .columns-wrapper .columns.block{
+    display:inline-block;
+    box-shadow: none;
+}
+
+
+/* carousel */
+.wehealth  .carousel-wrapper .carousel .cards-card-body{
+    margin: 0;
+}
+.wehealth  .carousel-wrapper .carousel .cards-card-body .primary-button a{
+    display: inline-block;
+    padding: 12px 24px !important;
+    margin-top: 10px;
+    background-color: var(--main-accent-color) !important;
+    color: var(--text-light) !important;
+    text-decoration: none;
+    border: 2px solid var(--main-accent-color) !important;
+    border-radius: 4px;
+} 
+.wehealth  .carousel-wrapper .carousel .cards-card-body .primary-button a::after{
+    color: var(--text-light) !important;
+}
+.wehealth  .carousel-wrapper .carousel .cards-card-body .primary-button a:hover{
+    background-color: transparent !important;
+    color: var(--main-accent-color) !important;
+    border-color: var(--main-accent-color) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+.wehealth  .carousel-wrapper .carousel .cards-card-body .primary-button a:hover::after{
+    color: var(--main-accent-color) !important;
+}
+.wehealth  .carousel-wrapper .carousel .cards-card-body .link a{
+    margin-top: 10px;
+}
+.wehealth  .carousel-wrapper .carousel .button-container .prev,
+ .wehealth  .carousel-wrapper .carousel .button-container .next{
+    margin: 0;
+    top: 50%;
+    right:auto;
+    border-radius: 50%;
+    padding:12px 16px;
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    opacity:unset;
+}
+ .wehealth  .carousel-wrapper .carousel .button-container .prev{
+    left:20px;
+}
+ .wehealth  .carousel-wrapper .carousel .button-container .next{
+   right: 20px;
+}
+ .wehealth  .carousel .button-container .prev:hover,
+ .wehealth  .carousel .button-container .next:hover {
+    background-color:var(--main-accent-color);
+    border-color:var(--main-accent-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index:10;
+}
+
+@media (width < 1024px) {
+    .wehealth .carousel-container .carousel-wrapper .carousel > ul {
+        display: flex !important;
+        flex-direction: row;
+        overflow: hidden;
+        scroll-snap-type: x mandatory;
+        transition: transform 0.3s ease-in-out;
+    }
+     .wehealth   .carousel-container .carousel-wrapper .carousel > ul > li {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin: 0;
+        scroll-snap-align: start;
+    }
+    .wehealth  .carousel-container .carousel-wrapper .carousel .cards-card-body h2{
+font-size: 16px;
+    }
+    .wehealth  .carousel-container .carousel-wrapper .carousel {
+        padding: 0 4%;
+    }
+
+}
+
+@media only screen and (width <= 1024px) {
+    .wehealth  .carousel-wrapper .carousel .button-container button {
+        padding: 10px 14px;
+        display: block;
+    }
+}
+@media only screen and (width < 768px) {
+    .wehealth  .carousel-wrapper .carousel .button-container .prev{
+        left: 15px;
+    }
+    .wehealth  .carousel-wrapper .carousel .button-container .next {
+        right: 15px;
+    }
+}
+
+/* header */
+ header .search {
+  --search-input-height: 40px;
+  padding-top: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+ header nav{
+    justify-content: space-between;
+}
+ header .search-container{
+    position:unset !important;
+    align-items:flex-start !important;
+    max-width:none !important;
+    width:auto !important;
+    margin:0 !important;
+}
+ header .search-box,.search-input{
+    outline:none !important;
+    border:none!important
+}
+ header .search .search-box {
+    display: block !important;
+    position: relative !important;
+    align-items: center !important;
+}
+ header .search .search-box .icon {
+    display:none;
+}
+ header .search .icon img{
+    filter:brightness(0) invert(1);
+}
+ header .icon.icon-search img,
+ header .search-icon{
+    width:24px !important;
+    height:24px !important;
+}
+
+/* search-results */
+ header .search-results {
+    display:none;
+    background: #ffffff;
+    border: 1px solid #dadada;
+    border-radius: 8px;
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    margin-top: 16px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+ header .search-results li {  
+    display: flex;
+    padding: 8px;
+    margin-bottom: 8px;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+ header .search-results li a{
+    display: grid;
+    grid-template-columns: 128px 1fr;
+    grid-auto-rows: auto;
+    column-gap: 12px;
+    align-items: start;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+ header .search-results li a::after {
+    content: none;
+    display: none;
+}
+ header .search-results li .search-result-image {
+    height: 80px;
+    overflow: hidden;
+    border-radius: 8px;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+ header .search-results li .search-result-image img {
+    height: 100%;
+}
+ header .search-results li .search-result-title {
+    font-weight: 600;
+    margin: 2px 0 2px;
+    grid-column: 2;
+}
+ header .search-results li p {
+    grid-column: 2;
+    margin: 0;
+    opacity: 0.85;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+ .search-box .search-input::-webkit-search-cancel-button {
+  opacity: 1;
+  color: #000 !important;
+}

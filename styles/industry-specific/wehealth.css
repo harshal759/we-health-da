@@ -167,12 +167,23 @@ flex: 0 0 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 40px;
     box-sizing: border-box;
+    
+    
 }
 .wehealth .columns-container .columns-wrapper .columns > div:nth-child(2) > div{
     flex:unset;
+    padding: 40px;
     width:100%;
+}
+.wehealth .columns-container.greybg .columns-wrapper .columns > div:nth-child(2) > div{
+    background:#dcdcdc;
+}
+.wehealth .columns-container.row-reverse .columns-wrapper .columns{
+    flex-direction: row-reverse;
+}
+.wehealth .columns-container.row-reverse .columns-wrapper .columns > div:nth-child(2) > div{
+    padding-left: 80px;
 }
 .wehealth .columns-container .columns-wrapper .columns > div:nth-child(2) > div h2,
 .wehealth .columns-container .columns-wrapper .columns > div:nth-child(2) > div p{

@@ -4,7 +4,7 @@ export default function decorate(block) {
   const apiPath = block.querySelector(':scope > div:nth-child(3) > div')?.textContent.trim() || '';
   const inputLabel = block.querySelector(':scope > div:nth-child(4) > div')?.textContent.trim() || '';
   const searchFilters = block.querySelector(':scope > div:nth-child(5) > div')?.textContent.trim() || '';
-
+console.log('Original block:', block.innerHTML);
   block.innerHTML = `
     <div class="search-listing-container">
       ${title ? `<h2>${title}</h2>` : ''}

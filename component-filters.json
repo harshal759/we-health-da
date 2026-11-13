@@ -25,7 +25,8 @@
       "video",
       "dynamicmedia-template",
       "teaser",
-      "promotion"
+      "promotion",
+      "search-listing"
     ]
   },
   {
@@ -70,5 +71,12 @@
     "components": [
       "tabs-item"
     ]
-  }
+  },
+  {
+      "id": "search-listing",
+      "components": [
+        "search-listing"
+      ]
+    }
+
 ]

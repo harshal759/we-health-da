@@ -1,0 +1,75 @@
+{
+  "definitions": [
+    {
+      "title": "Search Listing",
+      "id": "search-listing",
+      "model": "search-listing",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            {
+              "name": "title",
+              "selector": "div:nth-child(1)>div"
+            },
+            {
+              "name": "description",
+              "selector": "div:nth-child(2)>div"
+            },
+            {
+              "name": "apiPath",
+              "selector": "div:nth-child(3)>div"
+            },
+            {
+              "name": "inputLabel",
+              "selector": "div:nth-child(4)>div"
+            },
+            {
+              "name": "searchFilters",
+              "selector": "div:nth-child(5)>div"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "search-listing",
+      "fields": [
+        {
+          "component": "text",
+          "name": "title",
+          "label": "Title",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "description",
+          "label": "Description",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "apiPath",
+          "label": "API Path to Search",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "inputLabel",
+          "label": "Input Label",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "searchFilters",
+          "label": "Search Filters by Name",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

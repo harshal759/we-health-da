@@ -1,9 +1,9 @@
 export default function decorate(block) {
-  const title = block.querySelector(':scope > div:nth-child(1) > div')?.textContent.trim() || '';
-  const description = block.querySelector(':scope > div:nth-child(2) > div')?.textContent.trim() || '';
-  const apiPath = block.querySelector(':scope > div:nth-child(3) > div')?.textContent.trim() || '';
-  const inputLabel = block.querySelector(':scope > div:nth-child(4) > div')?.textContent.trim() || '';
-  const searchFilters = block.querySelector(':scope > div:nth-child(5) > div')?.textContent.trim() || '';
+  const title = block.querySelector(':scope > div:nth-child(1) > div:nth-child(2)')?.textContent.trim() || '';
+  const description = block.querySelector(':scope > div:nth-child(2) > div:nth-child(2)')?.textContent.trim() || '';
+  const apiPath = block.querySelector(':scope > div:nth-child(3) > div:nth-child(2)')?.textContent.trim() || '';
+  const inputLabel = block.querySelector(':scope > div:nth-child(4) > div:nth-child(2)')?.textContent.trim() || '';
+  const searchFilters = block.querySelector(':scope > div:nth-child(5) > div:nth-child(2)')?.textContent.trim() || '';
 console.log('Original block:', block.innerHTML);
   block.innerHTML = `
     <div class="search-listing-container">

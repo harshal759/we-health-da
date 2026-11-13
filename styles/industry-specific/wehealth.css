@@ -27,7 +27,11 @@ color: #000;
     border: 1px solid rgb(0 0 0 / 40%);
 }
 
-
+.wehealth header nav[aria-expanded='false'] .nav-hamburger-icon,
+.wehealth header nav[aria-expanded='false'] .nav-hamburger-icon::before,
+.wehealth header nav[aria-expanded='false'] .nav-hamburger-icon::after {
+   background:var(--nav-text-color);
+}
 /* hero */
 .wehealth .hero-container {
    transform: none !important;
@@ -54,12 +58,22 @@ color: var(--text-light) !important;
     text-align: left;
     padding: 60px 40px;
 }  
+.wehealth .hero-container.image-background-text-right .hero h1{
+    text-align: left;
+}
 .wehealth .hero-container.image-background-text-right .hero h1:after{
     margin:20px 0;
     display:block;
 }  
 .wehealth .hero-container.image-background-text-right .hero p{
     text-align: left;
+}
+
+.wehealth .hero-container.image-background-text-left .hero{
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    padding: 60px 40px;
 }
 
 /* Tablet and below */
@@ -94,6 +108,28 @@ color: var(--text-light) !important;
   }
 }
 
+/* Tablet */
+@media (width < 1024px) {
+  .wehealth .hero {
+    min-height: 650px;
+  }
+}
+
+/* Mobile */
+@media (width < 768px) {
+  .wehealth .hero {
+    min-height: 600px;
+  }
+}
+
+/* Small mobile */
+@media (width < 480px) {
+  .wehealth .hero {
+    min-height: 400px;
+    padding: 24px 12px;
+  }
+}
+
 
 /* cards */
 
@@ -102,6 +138,15 @@ color: var(--text-light) !important;
 }
 
 /* columns */
+.wehealth .columns-container:not(.column-flex) .columns-wrapper .columns.block .columns-row h2,
+.wehealth .columns-container:not(.column-flex) .columns-wrapper .columns.block .columns-row h3,
+.wehealth .columns-container:not(.column-flex) .columns-wrapper .columns.block .columns-row p {
+    font-family: 'Adobe Clean Black', roboto, roboto-fallback, sans-serif;
+}
+
+.wehealth .columns-container.column-flex .columns-wrapper .columns.block .columns-row h2{
+    font-family:'Adobe Clean Bold', roboto-condensed, roboto-condensed-fallback, sans-serif;
+}
 
 .wehealth .columns-container .columns-wrapper .columns.block{
     display:flex;
@@ -193,7 +238,7 @@ flex: 0 0 50%;
 .wehealth  .carousel-wrapper .carousel .button-container .prev,
  .wehealth  .carousel-wrapper .carousel .button-container .next{
     margin: 0;
-    top: 50%;
+    top: 45%;
     right:auto;
     border-radius: 50%;
     padding:12px 16px;
@@ -240,7 +285,7 @@ font-size: 16px;
 
 @media only screen and (width <= 1024px) {
     .wehealth  .carousel-wrapper .carousel .button-container button {
-        padding: 10px 14px;
+        padding: 10px 14px !important;
         display: block;
     }
 }

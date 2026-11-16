@@ -1,69 +1,118 @@
 
-export default function decorate(block) {
-  const title = block.querySelector(':scope > div:nth-child(1) > div:nth-child(2)')?.textContent.trim() || '';
-  const description = block.querySelector(':scope > div:nth-child(2) > div:nth-child(2)')?.textContent.trim() || '';
-  const apiPath = block.querySelector(':scope > div:nth-child(3) > div:nth-child(2)')?.textContent.trim() || '';
-  const inputLabel = block.querySelector(':scope > div:nth-child(4) > div:nth-child(2)')?.textContent.trim() || 'Search by title';
-  const searchFilters = block.querySelector(':scope > div:nth-child(5) > div:nth-child(2)')?.textContent.trim() || '';
+export default async function decorate(block) {
+  // Read authored block configuration
+  const getValue = (row) =>
+    block.querySelector(
+      `:scope > div:nth-child(${row}) > div:nth-child(2)`,
+    )?.textContent.trim() || '';
 
-  const INDEX_URL = apiPath || 'https://main--we-health-da--harshal759.aem.live/products-index.json';
+  const title = getValue(1);
+  const description = getValue(2);
+  const apiPath = getValue(3);
+  const inputLabel = getValue(4) || 'Search by doctor name';
+  const searchFilters = getValue(5);
+
+  const indexURL = apiPath ||
+    'https://main--we-health-da--harshal759.aem.live/products-index.json';
 
   block.innerHTML = `
     <div class="search-listing-container">
-      ${title ? `<h2>${title}</h2>` : ''}
-      ${description ? `<p>${description}</p>` : ''}
+      ${title ? `<h2 class="search-listing-title"></h2>` : ''}
+      ${description ? `<p class="search-listing-description"></p>` : ''}
 
       <div class="search-listing-form">
-        <label for="search-listing-input">${inputLabel}</label>
+        <label class="search-listing-label"></label>
         <input
           type="text"
-          id="search-listing-input"
-          placeholder="${inputLabel}"
+          class="search-listing-input"
+          placeholder=""
+          autocomplete="off"
         />
-        <button type="button" class="search-listing-button">
-          Search
-        </button>
       </div>
 
       <div class="search-listing-results" aria-live="polite"></div>
     </div>
   `;
 
-  const input = block.querySelector('#search-listing-input');
-  const button = block.querySelector('.search-listing-button');
+  const heading = block.querySelector('.search-listing-title');
+  const descriptionEl = block.querySelector('.search-listing-description');
+  const label = block.querySelector('.search-listing-label');
+  const input = block.querySelector('.search-listing-input');
   const results = block.querySelector('.search-listing-results');
+
+  if (heading) heading.textContent = title;
+  if (descriptionEl) descriptionEl.textContent = description;
+  label.textContent = inputLabel;
+  label.htmlFor = 'search-listing-input';
+  input.id = 'search-listing-input';
+  input.placeholder = inputLabel;
 
   let doctors = [];
 
   results.textContent = 'Loading doctors...';
 
-  fetch(INDEX_URL)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((json) => {
-      doctors = json.data || [];
-      results.textContent = 'Enter more than 3 characters to search.';
-    })
-    .catch((error) => {
-      console.error('Error fetching index:', error);
-      results.textContent = 'Unable to load doctors.';
-    });
+  try {
+    const response = await fetch(indexURL);
 
-  function searchDoctors() {
-    const query = input.value.trim().toLowerCase();
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+
+    const json = await response.json();
+    doctors = json.data || [];
+    results.textContent = 'Enter at least 4 characters to search.';
+  } catch (error) {
+    console.error('Unable to load doctor index:', error);
+    results.textContent = 'Unable to load doctors. Please try again.';
+    return;
+  }
+
+  function createDoctorCard(doctor) {
+    const card = document.createElement('article');
+    card.className = 'doctor-card';
+
+    // Image area styled like the reference card.
+    const imageArea = document.createElement('div');
+    imageArea.className = 'doctor-image';
+
+    const avatar = document.createElement('div');
+    avatar.className = 'doctor-avatar';
+    avatar.setAttribute('aria-hidden', 'true');
+    avatar.textContent = (doctor.title || 'D').charAt(0).toUpperCase();
+    imageArea.appendChild(avatar);
+
+    const info = document.createElement('div');
+    info.className = 'doctor-info';
+
+    const name = document.createElement('h3');
+    name.className = 'doctor-name';
+    name.textContent = doctor.title || 'Doctor';
+
+    const specialty = document.createElement('p');
+    specialty.className = 'doctor-specialty';
+    specialty.textContent = doctor.specialty || 'Specialty not available';
+
+    const link = document.createElement('a');
+    link.className = 'doctor-profile-link';
+    link.href = doctor.path || '#';
+    link.textContent = 'View profile';
+
+    info.append(name, specialty, link);
+    card.append(imageArea, info);
+
+    return card;
+  }
+
+  function renderResults(query) {
     results.replaceChildren();
 
     if (query.length <= 3) {
-      results.textContent = 'Please enter at least 4 characters.';
+      results.textContent = 'Enter at least 4 characters to search.';
       return;
     }
 
     const matches = doctors.filter((doctor) =>
-      (doctor.title || '').toLowerCase().includes(query)
+      (doctor.title || '').toLowerCase().includes(query),
     );
 
     if (!matches.length) {
@@ -71,33 +120,24 @@ export default function decorate(block) {
       return;
     }
 
+    const count = document.createElement('p');
+    count.className = 'search-listing-count';
+    count.textContent = `${matches.length} doctor(s) found`;
+
+    const grid = document.createElement('div');
+    grid.className = 'doctor-results-grid';
+
     matches.forEach((doctor) => {
-      const card = document.createElement('article');
-      card.className = 'doctor-card';
-
-      const doctorTitle = document.createElement('h3');
-      doctorTitle.textContent = doctor.title || 'Unnamed doctor';
-
-      const specialty = document.createElement('p');
-      specialty.textContent = `Specialty: ${doctor.specialty || 'Not specified'}`;
-
-      const link = document.createElement('a');
-      link.href = doctor.path || '#';
-      link.textContent = 'View details';
-
-      card.append(doctorTitle, specialty, link);
-      results.append(card);
+      grid.appendChild(createDoctorCard(doctor));
     });
+
+    results.append(count, grid);
   }
 
-  button.addEventListener('click', searchDoctors);
-
-  input.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      searchDoctors();
-    }
+  input.addEventListener('input', () => {
+    renderResults(input.value.trim().toLowerCase());
   });
 
-  console.log('API Path:', apiPath);
-  console.log('Search Filters:', searchFilters);
+  console.log('Index URL:', indexURL);
+  console.log('Search filters:', searchFilters);
 }

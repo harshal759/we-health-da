@@ -131,7 +131,7 @@
   overflow-wrap: anywhere;
 }
 
-.product-subtitle {
+.product-info p {
   margin: 0 0 1.25rem;
   color: var(--link-color, #007bff);
   font-size: 1.05rem;
@@ -139,7 +139,7 @@
 }
 
 /* Profile link */
-.product-profile-link {
+.product-info a.product-profile-link {
   display: block;
   width: 100%;
   box-sizing: border-box;

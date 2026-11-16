@@ -59,8 +59,18 @@ export default async function decorate(block) {
     }
 
     const json = await response.json();
-    products = json.data || [];
-    results.textContent = 'Enter at least 4 characters to search.';
+
+const folderName = searchFilters.trim().toLowerCase();
+
+products = (json.data || []).filter((item) => {
+  const path = item.path || '';
+
+  return path.startsWith(
+    `/structured-content/${folderName}/`
+  );
+});
+
+results.textContent = 'Enter at least 4 characters to search.';
   } catch (error) {
     console.error('Unable to load index:', error);
     results.textContent = 'Unable to load. Please try again.';

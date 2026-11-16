@@ -13,7 +13,7 @@ export default async function decorate(block) {
   const searchFilters = getValue(5);
 
   const indexURL = apiPath ||
-    'https://main--we-health-da--harshal759.aem.live/products-index.json';
+    '/structured-content-index.json';
 
   block.innerHTML = `
     <div class="search-listing-container">

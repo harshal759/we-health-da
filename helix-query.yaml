@@ -1,8 +1,8 @@
 version: 1
 
 indices:
-  products:
-    target: /products-index.json
+  structured-content:
+    target: /structured-content-index.json
     include:
       - /structured-content/**
     exclude:

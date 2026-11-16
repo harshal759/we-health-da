@@ -2,7 +2,7 @@ version: 1
 
 indices:
   products:
-    target: /products-index.json
+    target: /doctors/products-index.json
     include:
       - /doctors/**
     exclude:
@@ -16,7 +16,7 @@ indices:
       specialty:
         select: div > div > div:has(#specialty) > div:last-child
         value: textContent(el)
-        
+
   site-en: &base-site
     include:
       - '/'

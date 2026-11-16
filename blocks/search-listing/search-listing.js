@@ -103,25 +103,33 @@ results.textContent = 'Enter at least 4 characters to search.';
 
     const info = document.createElement('div');
     info.className = 'product-info';
-
+if (product.title?.trim()) {
     const name = document.createElement('h3');
     name.className = 'product-name';
-    name.textContent = product.title || 'product';
-
-    const specialty = document.createElement('p');
-    specialty.className = 'product-subtitle';
-    specialty.textContent = product.subtitle || 'Subtitle not available';
-
+    name.textContent = product.title;
+    info.append(name);
+    }
+if (product.subtitle?.trim()) {
+    const subtitle = document.createElement('p');
+    subtitle.className = 'product-subtitle';
+    subtitle.textContent = product.subtitle;
+    info.append(subtitle);
+    }
+if (product.description?.trim()) {
     const description = document.createElement('p');
     description.className = 'product-description';
-    description.textContent = product.description || 'Description not available';   
-
+    description.textContent = product.description;   
+info.append(description);
+    }
+    if (product.buttonLabel?.trim()) {
     const link = document.createElement('a');
     link.className = 'product-profile-link';
     link.href = product.buttonUrl || '#';
-    link.textContent = product.buttonLabel || 'View profile';
+    link.textContent = product.buttonLabel;
+    info.append(link);
+    }
 
-    info.append(name, specialty, description, link);
+    // info.append(name, specialty, description, link);
     card.append(imageArea, info);
 
     return card;

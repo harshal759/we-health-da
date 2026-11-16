@@ -2,7 +2,7 @@ version: 1
 
 indices:
   products:
-    target: products-index.json
+    target: /products-index.json
     include:
       - /doctors/**
     exclude:

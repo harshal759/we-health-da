@@ -86,3 +86,19 @@ indices:
       - /ja/search
       - /ja/footer
     target: /ja/query-index.json
+
+  products:
+    target: /products-index.json
+    include:
+      - /doctors/**
+    exclude:
+      - "**/fragments/**"
+      - "**/drafts/**"
+      - "**/*.json"
+    properties:
+      title:
+        select: div > div > div:has(#title) > div:last-child
+        value: textContent(el)
+      specialty:
+        select: div > div > div:has(#specialty) > div:last-child
+        value: textContent(el)

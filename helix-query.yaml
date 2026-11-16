@@ -20,7 +20,7 @@ indices:
         select: div > div > div:has(#description) > div:last-child
         value: textContent(el)
       mainImage:
-        select: div > div > div:has(#mainImage) > div:last-child
+        select: div > div > div:has(#mainimage) > div:last-child
         value: textContent(el)
       buttonLabel:
         select: div > div > div:has(#buttonlabel) > div:last-child

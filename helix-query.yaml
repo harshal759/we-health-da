@@ -16,6 +16,18 @@ indices:
       specialty:
         select: div > div > div:has(#specialty) > div:last-child
         value: textContent(el)
+      description:
+        select: div > div > div:has(#description) > div:last-child
+        value: textContent(el)
+      location:
+        select: div > div > div:has(#location) > div:last-child
+        value: textContent(el)
+      experience:
+        select: div > div > div:has(#experience) > div:last-child
+        value: textContent(el)
+      profileUrl:
+        select: div > div > div:has(#profileUrl) > div:last-child
+        value: textContent(el)
 
   site-en: &base-site
     include:

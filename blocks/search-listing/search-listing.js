@@ -75,11 +75,21 @@ export default async function decorate(block) {
     const imageArea = document.createElement('div');
     imageArea.className = 'product-image';
 
-    const avatar = document.createElement('div');
-    avatar.className = 'product-avatar';
-    avatar.setAttribute('aria-hidden', 'true');
-    avatar.textContent = (product.title || 'D').charAt(0).toUpperCase();
-    imageArea.appendChild(avatar);
+    if (product.mainImage) {
+  const img = document.createElement('img');
+  img.src = product.mainImage;
+  img.alt = product.title || 'Product image';
+  img.loading = 'lazy';
+
+  imageArea.appendChild(img);
+} else {
+  const avatar = document.createElement('div');
+  avatar.className = 'product-avatar';
+  avatar.setAttribute('aria-hidden', 'true');
+  avatar.textContent = (product.title || 'P').charAt(0).toUpperCase();
+
+  imageArea.appendChild(avatar);
+}
 
     const info = document.createElement('div');
     info.className = 'product-info';
@@ -89,27 +99,19 @@ export default async function decorate(block) {
     name.textContent = product.title || 'product';
 
     const specialty = document.createElement('p');
-    specialty.className = 'product-specialty';
-    specialty.textContent = product.specialty || 'Specialty not available';
+    specialty.className = 'product-subtitle';
+    specialty.textContent = product.subtitle || 'Subtitle not available';
 
     const description = document.createElement('p');
     description.className = 'product-description';
-    description.textContent = product.description || 'Description not available';
-
-    const location = document.createElement('p');
-    location.className = 'product-location';
-    location.textContent = product.location || 'Location not available';
-
-    const experience = document.createElement('p');
-    experience.className = 'product-experience';
-    experience.textContent = product.experience || 'Experience not available';
+    description.textContent = product.description || 'Description not available';   
 
     const link = document.createElement('a');
     link.className = 'product-profile-link';
-    link.href = product.path || '#';
-    link.textContent = 'View profile';
+    link.href = product.buttonUrl || '#';
+    link.textContent = product.buttonLabel || 'View profile';
 
-    info.append(name, specialty, description, location, experience, link);
+    info.append(name, specialty, description, link);
     card.append(imageArea, info);
 
     return card;

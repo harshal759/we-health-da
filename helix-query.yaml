@@ -4,7 +4,7 @@ indices:
   products:
     target: /products-index.json
     include:
-      - /doctors/**
+      - /structured-content/**
     exclude:
       - "**/fragments/**"
       - "**/drafts/**"
@@ -13,20 +13,20 @@ indices:
       title:
         select: div > div > div:has(#title) > div:last-child
         value: textContent(el)
-      specialty:
-        select: div > div > div:has(#specialty) > div:last-child
+      subtitle:
+        select: div > div > div:has(#subtitle) > div:last-child
         value: textContent(el)
       description:
         select: div > div > div:has(#description) > div:last-child
         value: textContent(el)
-      location:
-        select: div > div > div:has(#location) > div:last-child
+      mainImage:
+        select: div > div > div:has(#mainImage) > div:last-child
         value: textContent(el)
-      experience:
-        select: div > div > div:has(#experience) > div:last-child
+      buttonLabel:
+        select: div > div > div:has(#buttonLabel) > div:last-child
         value: textContent(el)
-      profileUrl:
-        select: div > div > div:has(#profileUrl) > div:last-child
+      buttonUrl:
+        select: div > div > div:has(#buttonUrl) > div:last-child
         value: textContent(el)
 
   site-en: &base-site

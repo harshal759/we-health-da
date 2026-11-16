@@ -131,7 +131,7 @@
   overflow-wrap: anywhere;
 }
 
-.product-specialty {
+.product-subtitle {
   margin: 0 0 1.25rem;
   color: var(--link-color, #007bff);
   font-size: 1.05rem;

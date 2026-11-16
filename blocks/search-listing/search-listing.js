@@ -9,7 +9,7 @@ export default async function decorate(block) {
   const title = getValue(1);
   const description = getValue(2);
   const apiPath = getValue(3);
-  const inputLabel = getValue(4) || 'Search by doctor name';
+  const inputLabel = getValue(4) || 'Search by name';
   const searchFilters = getValue(5);
 
   const indexURL = apiPath ||
@@ -47,9 +47,9 @@ export default async function decorate(block) {
   input.id = 'search-listing-input';
   input.placeholder = inputLabel;
 
-  let doctors = [];
+  let products = [];
 
-  results.textContent = 'Loading doctors...';
+  results.textContent = 'Loading ...';
 
   try {
     const response = await fetch(indexURL);
@@ -59,45 +59,57 @@ export default async function decorate(block) {
     }
 
     const json = await response.json();
-    doctors = json.data || [];
+    products = json.data || [];
     results.textContent = 'Enter at least 4 characters to search.';
   } catch (error) {
-    console.error('Unable to load doctor index:', error);
-    results.textContent = 'Unable to load doctors. Please try again.';
+    console.error('Unable to load index:', error);
+    results.textContent = 'Unable to load. Please try again.';
     return;
   }
 
-  function createDoctorCard(doctor) {
+  function createproductCard(product) {
     const card = document.createElement('article');
-    card.className = 'doctor-card';
+    card.className = 'product-card';
 
     // Image area styled like the reference card.
     const imageArea = document.createElement('div');
-    imageArea.className = 'doctor-image';
+    imageArea.className = 'product-image';
 
     const avatar = document.createElement('div');
-    avatar.className = 'doctor-avatar';
+    avatar.className = 'product-avatar';
     avatar.setAttribute('aria-hidden', 'true');
-    avatar.textContent = (doctor.title || 'D').charAt(0).toUpperCase();
+    avatar.textContent = (product.title || 'D').charAt(0).toUpperCase();
     imageArea.appendChild(avatar);
 
     const info = document.createElement('div');
-    info.className = 'doctor-info';
+    info.className = 'product-info';
 
     const name = document.createElement('h3');
-    name.className = 'doctor-name';
-    name.textContent = doctor.title || 'Doctor';
+    name.className = 'product-name';
+    name.textContent = product.title || 'product';
 
     const specialty = document.createElement('p');
-    specialty.className = 'doctor-specialty';
-    specialty.textContent = doctor.specialty || 'Specialty not available';
+    specialty.className = 'product-specialty';
+    specialty.textContent = product.specialty || 'Specialty not available';
+
+    const description = document.createElement('p');
+    description.className = 'product-description';
+    description.textContent = product.description || 'Description not available';
+
+    const location = document.createElement('p');
+    location.className = 'product-location';
+    location.textContent = product.location || 'Location not available';
+
+    const experience = document.createElement('p');
+    experience.className = 'product-experience';
+    experience.textContent = product.experience || 'Experience not available';
 
     const link = document.createElement('a');
-    link.className = 'doctor-profile-link';
-    link.href = doctor.path || '#';
+    link.className = 'product-profile-link';
+    link.href = product.path || '#';
     link.textContent = 'View profile';
 
-    info.append(name, specialty, link);
+    info.append(name, specialty, description, location, experience, link);
     card.append(imageArea, info);
 
     return card;
@@ -111,24 +123,24 @@ export default async function decorate(block) {
       return;
     }
 
-    const matches = doctors.filter((doctor) =>
-      (doctor.title || '').toLowerCase().includes(query),
+    const matches = products.filter((product) =>
+      (product.title || '').toLowerCase().includes(query),
     );
 
     if (!matches.length) {
-      results.textContent = 'No doctors found.';
+      results.textContent = 'No products found.';
       return;
     }
 
     const count = document.createElement('p');
     count.className = 'search-listing-count';
-    count.textContent = `${matches.length} doctor(s) found`;
+    count.textContent = `${matches.length} product(s) found`;
 
     const grid = document.createElement('div');
-    grid.className = 'doctor-results-grid';
+    grid.className = 'product-results-grid';
 
-    matches.forEach((doctor) => {
-      grid.appendChild(createDoctorCard(doctor));
+    matches.forEach((product) => {
+      grid.appendChild(createproductCard(product));
     });
 
     results.append(count, grid);
